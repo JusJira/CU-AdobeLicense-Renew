@@ -32,3 +32,20 @@ jobs:
           USERNAME: ${{ secrets.USERNAME }}
           PASSWORD: ${{ secrets.PASSWORD }}
         run: python renew.py
+  line:
+    if: success()
+    runs-on: ubuntu-latest
+    steps:
+        - uses: snow-actions/line-notify@v1.1.0
+          with:
+              access_token: ${{ secrets.LINE_ACCESS_TOKEN }}
+              message: Renewed Successfully
+
+  line-fail:
+    if: failure()
+    runs-on: ubuntu-latest
+    steps:
+        - uses: snow-actions/line-notify@v1.1.0
+          with:
+              access_token: ${{ secrets.LINE_ACCESS_TOKEN }}
+              message: Did not renew
