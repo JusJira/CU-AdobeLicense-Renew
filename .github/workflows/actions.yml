@@ -44,6 +44,7 @@ jobs:
 
   line-fail:
     if: failure()
+    needs: renew
     runs-on: ubuntu-latest
     steps:
         - uses: snow-actions/line-notify@v1.1.0
